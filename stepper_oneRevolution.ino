@@ -1,4 +1,4 @@
-/*
+/* 
  Stepper Motor Control - speed control
 
  This program drives a unipolar or bipolar stepper motor.
