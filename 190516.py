@@ -32,11 +32,12 @@ def main():
             client_sock.send("recieve")
             data = data.decode()
             print(data, type(data))
-            if data == 'g':
+            if data == 'l':
                 #client_sock.send(data)
-                ser.write('g'.encode())
-            if data == 's':
-                ser.write('s'.encode())
+                ser.writelines('l')
+            if data == 'r':
+                ser.writelines('r')
+            else : ser.writelines('g')
             #print ("send [%s]" % tempchar)
     except IOError:
         pass
