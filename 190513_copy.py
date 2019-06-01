@@ -26,7 +26,7 @@ def takephoto():
     #client_sock.send("takephoto")
     global camea
     camera.capture('cam.jpg')
-
+    
 def machine():
     takephoto() # First take a picture
     """Run a label request on a single image"""
@@ -53,6 +53,7 @@ def main():
     port = server_sock.getsockname()[1]
     global camera
     camera = picamera.PiCamera()
+    #camera.resolution = (480,480)
 
     uuid = "94f39d29-7d6d-437d-973b-fba39e49d4ee"
 
@@ -76,7 +77,7 @@ def main():
             if data == "cam":
                 print('running')
                 data = machine()
-                #takephoto()
+                print('data')
                 myfile=open('cam.jpg', 'rb')
                 sbytes=myfile.read()
                 print(type(sbytes))
@@ -89,7 +90,7 @@ def main():
                 client_sock.sendall(sbytes)
                 #client_sock.send(b'end')
                 client_sock.send(data)
-            
+
             #print ("send [%s]" % tempchar)
     except IOError:
         pass

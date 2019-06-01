@@ -20,11 +20,16 @@ client = vision.ImageAnnotatorClient()
 
 from bluetooth import *
 
+#beacon
+from gattlib import BeaconService
+import serial
+import time
+import math
+#ser = serial.Serial('/dev/ttyACM0',9600)
+command =""
+
 def takephoto():
-    #camera = picamera.PiCamera()
     print("takephoto")
-    #client_sock.send("takephoto")
-    global camea
     camera.capture('cam.jpg')
 
 def machine():
@@ -37,7 +42,6 @@ def machine():
     image = vision.types.Image(content=content)
     response = client.label_detection(image=image)
     labels = response.label_annotations
-    print('Labels:')
     tempchar=[]
     for i in range(min(3,len(labels))):
         print(labels[i].description)
@@ -76,21 +80,14 @@ def main():
             if data == "cam":
                 print('running')
                 data = machine()
-                #takephoto()
                 myfile=open('cam.jpg', 'rb')
                 sbytes=myfile.read()
-                print(type(sbytes))
-                print(len(sbytes))
-                #print(sbytes)
                 file_size = str(len(sbytes))
-                #client_sock.send(b'start')
-                #client_sock.send(bytes([len(file_size)])+file_size.encode())
                 client_sock.send(file_size)
                 client_sock.sendall(sbytes)
                 #client_sock.send(b'end')
                 client_sock.send(data)
             
-            #print ("send [%s]" % tempchar)
     except IOError:
         pass
 

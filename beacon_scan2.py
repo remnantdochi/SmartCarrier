@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- mode: python; coding: utf-8 -*-
 
 # Copyright (C) 2014, Oscar Acena <oscaracena@gmail.com>
@@ -36,18 +36,18 @@ RSSI =0
 w=0.9
 while True:
         
+        
         service = BeaconService("hci0")
-        devices = service.scan(1)
-        print(service, devices)
+        devices = service.scan(2)
         
         for address, data in list(devices.items()):
             #b = Beacon(data, address)
             b = Beacon(data, address)
             #l = math.log(abs(b._rssi))
-            #print(b._address, b._rssi)
+            print(b._address, b._rssi)
 
         #print("Done.")
-        print(b._address, b._rssi)
+        #print(b._address, b._rssi)
         
         #command = raw_input("command \n")
         if len(loglist) < 3 :
