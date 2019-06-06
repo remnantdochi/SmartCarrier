@@ -155,6 +155,8 @@ def main():
                 if len(uu_dist) != 0:
                     print("AAAAA", uu_dist)
                     u_dist = float(uu_dist)
+                else:
+                    u_dist = 800.0
                 flag = 2
                 command = "g"
                 ser.writelines('g')
