@@ -114,8 +114,10 @@ def main():
             ser.flushInput()
             read_serial = ser.readline()
             uu_dist = read_serial[:-2]
-            if len(uu_dist) != 0:
+            try:
                 u_dist = float(uu_dist)
+            except:
+                u_dist = 800.0
 
             if flag == 0:
                 print("time out")
@@ -152,10 +154,9 @@ def main():
                 ser.flushInput()
                 read_serial = ser.readline()
                 uu_dist = read_serial[:-2]
-                if len(uu_dist) != 0:
-                    print("AAAAA", uu_dist)
+                try:
                     u_dist = float(uu_dist)
-                else:
+                except:
                     u_dist = 800.0
                 flag = 2
                 command = "g"
